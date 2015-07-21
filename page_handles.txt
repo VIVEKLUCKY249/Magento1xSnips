@@ -1,0 +1,163 @@
+MAIN PAGES
+HOME PAGE
+.cms-index-index .cms-home
+/
+CATALOG / CATEGORY
+.catalog-category-view .categorypath-category-path-name .category-category-name
+/category-name(.html)
+CATALOG FILTER
+.filter-index-view
+/category-name(.html)?cat=205
+PRODUCT PAGE
+.catalog-product-view .product-product-name
+/category-name/sub-category-name/product-name(.html) or /product-name(.html) (depending on how you set it up in the admin panel)
+PRODUCT PAGE (After clicking ‘Edit’ from Cart)
+.checkout-cart-configure .catalog-product-view .product-product-name
+/checkout/cart/configure/id/91
+PRODUCT PAGE (After clicking ‘Edit’ from Wishlist)
+.wishlist-index-configure .catalog-product-view .product-product-name
+/wishlist/index/configure/id/1
+PRODUCT PAGE (After clicking on the ‘(#) review(s)’ link or on ‘Add Your Review’)
+.review-product-list
+/review/product/list/id/1105/category/204
+SHOPPING CART PAGE
+.checkout-cart-index
+/checkout/cart
+ONE PAGE CHECKOUT
+.checkout-onepage-index
+/checkout/onepage
+ONE PAGE CHECKOUT SUCCESS
+.checkout-onepage-success
+/checkout/onepage/success
+PAYPAL REVIEW PAGE
+.paypal-express-review
+/paypal/express/review
+ACCOUNT PAGES
+LOGIN
+.customer-account-login
+/customer/account/login
+CREATE AN ACCOUNT
+.customer-account-create
+/customer/account/create
+FORGOT YOUR PASSWORD
+.customer-account-forgotpassword
+/customer/account/forgotpassword
+RESET PASSWORD
+.customer-account-resetpassword
+customer/account/reset-password
+LOGOUT SUCCESS
+.customer-account-logoutsuccess
+/customer/account/logoutSuccess
+ACCOUNT SIDEBAR
+ACCOUNT DASHBOARD
+.customer-account-index
+/customer/account
+ACCOUNT DASHBOARD (After clicking ‘Edit’) or ACCOUNT INFORMATION
+.customer-account-edit
+/customer/account/edit
+ADDRESS BOOK (Adding or editing addresses)
+.customer-address-form
+/customer/address/new
+ADDRESS BOOK (After having at least one address saved)
+.customer-address-index
+/customer/address/index or /customer/address
+MY ORDERS
+.sales-order-history
+/sales/order/history
+MY ORDERS (Order Information tab)
+.sales-order-view
+/sales/order/view/order_id/2
+MY ORDERS (Invoices tab)
+.sales-order-invoice
+/sales/order/invoice/order_id/2
+MY ORDERS (Shipments tab)
+.sales-order-shipment
+sales/order/shipment/order_id/2
+MY ORDERS (Returns tab)
+.enterprise-rma-return-returns
+/rma/return/returns/order_id/2
+BILLING AGREEMENTS
+.sales-billing-agreement-index
+/sales/billing_agreement
+RECURRING PROFILES
+.sales-recurring-profile-index
+/sales/recurring_profile
+MY PRODUCT REVIEWS
+.review-customer-index
+/review/customer
+MY PRODUCT REVIEWS (After clicking on ‘View Details’)
+.review-customer-view
+review/customer/view/id/3
+MY TAGS
+.tag-customer-index
+/tag/customer
+MY WISHLIST
+.wishlist-index-index .wishlist-index-share
+/wishlist/index/index
+MY APPLICATIONS
+.oauth-customer-token-index
+/oauth/customer_token
+NEWSLETTER SUBSCRIPTIONS
+.newsletter-manage-index
+/newsletter/manage
+MY DOWNLOADABLE PRODUCTS
+.downloadable-customer-products
+/downloadable/customer/products
+MY INVITATIONS
+.enterprise-invitation-index-index
+/invitation
+MY INVITATIONS (After clicking on ‘Send Invitations’)
+.enterprise-invitation-index-send
+/invitation/index/send/
+STORE CREDIT
+.enterprise-customerbalance-info-index
+/storecredit/info
+GIFT CARD
+.enterprise-giftcardaccount-customer-index
+/giftcard/customer
+GIFT REGISTRY
+.enterprise-giftregistry-index-index
+/giftregistry
+GIFT REGISTRY (After clicking on ‘Add New’)
+.enterprise-giftregistry-index-addselect
+/giftregistry/index/addselect
+GIFT REGISTRY (After adding one)
+.enterprise-giftregistry-index-edit
+/giftregistry/index/edit
+GIFT REGISTRY (After clicking on ‘Manage Items’ on the added one)
+.enterprise-giftregistry-index-items
+/giftregistry/index/items/id/1
+GIFT REGISTRY (After clicking on ‘Share’ on the added one)
+.enterprise-giftregistry-index-share
+/giftregistry/index/share/id/1
+REWARD POINTS
+.enterprise-reward-customer-info
+/reward/customer/info
+MY RETURNS
+.enterprise-rma-return-history
+/rma/return/history
+MY RETURNS (After clicking on ‘Return’ from the Order View page)
+.enterprise-rma-return-create
+/rma/return/create/order_id/2
+MY RETURNS (After clicking on ‘View Return’)
+.enterprise-rma-return-view
+/rma/return/view/entity_id/4
+MY RETURNS – Tracking Information pop-up (After clicking ‘Track this shipment’ when return is authorized)
+.page-popup .enterprise-rma-tracking-popup
+/rma/tracking/popup/hash/cm1hX2lkOjQ6YThjYTRk
+OTHER PAGES
+CMS PAGES
+.cms-page-view .cms-page-name
+/cms-page-name
+PAGE NOT FOUND 404
+.cms-index-noroute .cms-no-route
+/non-existent-url-path
+SEARCH PAGE
+.catalogsearch-result-index
+Use search bar
+RSS PAGE
+.rss-index-index
+/rss (you need to turn this on in the admin panel)
+WORDPRESS PAGES (When you integrate it with Magento)
+.is-blog
+/blog
