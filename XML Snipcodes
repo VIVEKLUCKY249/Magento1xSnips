@@ -1,0 +1,5 @@
+<!-- Add Body Class -->
+<reference name="root">
+  <action method="addBodyClass"><classname>my-body-class</classname></action>
+</reference>
+
