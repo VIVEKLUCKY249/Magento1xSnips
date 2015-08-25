@@ -3,7 +3,7 @@
   <action method="addBodyClass"><classname>my-body-class</classname></action>
 </reference>
 
-<!--Set base template for any page or reference block -->
+<!--Set base template for any page-->
 <layouthandle>
     <reference name="root">
         <action method="setTemplate">
@@ -16,3 +16,12 @@
 <block type="cms/block" name="blockname">
     <action method="setBlockId"><block_id>block_identfier_admin</block_id></action>
 </block> 
+
+<!--Set template for block-->
+<reference name="content">
+    <block type="core/template" name="blockname">
+        <action method="setTemplate">
+            <template>path_to_template_parentdir/filename.phtml</template>
+        </action>
+    </block>
+</reference>
