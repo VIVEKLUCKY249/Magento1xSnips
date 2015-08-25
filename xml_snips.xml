@@ -11,3 +11,8 @@
         </action>
     </reference>
 </layouthandle>
+
+<!--Set cms-static block-->
+<block type="cms/block" name="blockname">
+    <action method="setBlockId"><block_id>block_identfier_admin</block_id></action>
+</block> 
