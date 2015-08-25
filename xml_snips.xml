@@ -3,3 +3,9 @@
   <action method="addBodyClass"><classname>my-body-class</classname></action>
 </reference>
 
+<!--Set base template for any page or reference block -->
+<layouthandle>
+<reference name="root">
+    <action method="setTemplate"><template>page/<filename>.phtml</template></action>
+</reference>
+</layouthandle>
