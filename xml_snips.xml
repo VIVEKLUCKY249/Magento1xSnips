@@ -59,3 +59,17 @@
 		</global>
 </config>
 
+<!-- same thing for other type like "grouped" -->
+<grouped translate="label" module="catalog">
+	<label>Grouped Product</label>
+	<model>catalog/product_type_grouped</model>
+	<price_model>catalog/product_type_grouped_price</price_model>
+	<composite>1</composite>
+	<allow_product_types>
+	    <simple/>
+	    <virtual/>
+	</allow_product_types>
+	<index_priority>50</index_priority>
+	<price_indexer>catalog/product_indexer_price_grouped</price_indexer>
+</grouped>
+
