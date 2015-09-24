@@ -30,3 +30,31 @@
         </action>
     </block>
 </reference>
+
+<!-- Allow custom prduct types to Bundle product -->
+<!-- You have to create module for this following module structure with only etc/config.xml & etc/modules/Comp_Mod.xml -->
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MyCompany_Bundle>
+            <version>1.0.0</version>
+        </MyCompany_Bundle>
+    </modules>
+    <global>
+			<catalog>
+            <product>
+                <type>
+                    <bundle translate="label" module="bundle">
+                        <allowed_selection_types>
+                            <simple/>
+                            <virtual/>
+                            <customproduct1/>
+                            <customproduct2/>
+                            <customproduct3/>
+                        </allowed_selection_types>
+                    </bundle>
+                </type>
+            </product>
+       </catalog>
+		</global>
+</config>
