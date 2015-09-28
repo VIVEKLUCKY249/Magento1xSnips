@@ -58,3 +58,19 @@ $attr = array (
 );
 $resSetup->addAttribute('catalog_product', $_REQUEST['attrCode'], $attr);
 exit("Attribute $attrCode created successfully!!");
+
+## Remove attribute<?php
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+require_once './app/Mage.php';
+umask(0);
+Mage::app();
+
+$resSetup = new Mage_Catalog_Model_Resource_Setup();
+
+$attrCode = $_REQUEST['attrCode'];
+
+$resSetup->removeAttribute('catalog_product', $attrCode);
+exit("Attribute $attrCode removed successfully!!");
+
+
