@@ -59,7 +59,7 @@ $attr = array (
 $resSetup->addAttribute('catalog_product', $_REQUEST['attrCode'], $attr);
 exit("Attribute $attrCode created successfully!!");
 
-## Remove attribute<?php
+## Remove attribute
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 require_once './app/Mage.php';
@@ -72,5 +72,3 @@ $attrCode = $_REQUEST['attrCode'];
 
 $resSetup->removeAttribute('catalog_product', $attrCode);
 exit("Attribute $attrCode removed successfully!!");
-
-
