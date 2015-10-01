@@ -74,6 +74,7 @@ $resSetup->removeAttribute('catalog_product', $attrCode);
 exit("Attribute $attrCode removed successfully!!");
 
 ## To allow access to any resource in Admin
+### Add below function in module's Adminhtml Controller file
 protected function _isAllowed()
 {
   return Mage::getSingleton('admin/session')->isAllowed('<resource_identifier> as specified in menu tag in config or adminhtml xml files');
