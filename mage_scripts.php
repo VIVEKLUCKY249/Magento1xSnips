@@ -79,3 +79,46 @@ protected function _isAllowed()
 {
   return Mage::getSingleton('admin/session')->isAllowed('<resource_identifier> as specified in menu tag in config or adminhtml xml files');
 }
+
+## Assign attribute to attribute set and group.
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+require_once './app/Mage.php';
+umask(0);
+Mage::app();
+
+$attrCode = $_REQUEST['attrCode'];
+
+$entityTypeRes = Mage::getModel('catalog/product')->getResource();
+$entityTypeId = $entityTypeRes->getEntityType()->getEntityTypeId();
+$entityTypeCode = $entityTypeRes->getEntityType()->getEntityTypeCode();
+
+## Now assign attribute to desired attribute set and group.
+$installer = Mage::getResourceModel('catalog/setup','default_setup');
+$installer->startSetup();
+/*$installer->addAttribute(
+     'catalog_product',
+     'no_of_channels',
+     array(
+         'label' => 'Attribute Label',
+         'group' => 'General'
+     )
+);*/
+$installer->endSetup();
+unset($installer);
+
+$attributeSetId = Mage::getModel('eav/entity_attribute_set')
+								->getCollection()
+								->setEntityTypeFilter(10)
+								->addFieldToFilter('attribute_set_name', "<attribute_set_name>")
+								->getFirstItem()
+								->getAttributeSetId();
+$installer = new Mage_Eav_Model_Entity_Setup('core_setup');
+
+$entityTypeRes = Mage::getModel('catalog/product')->getResource();
+$entityTypeId = $entityTypeRes->getEntityType()->getEntityTypeId();
+$entityTypeCode = $entityTypeRes->getEntityType()->getEntityTypeCode();
+
+$installer->startSetup();
+$installer->addAttributeToSet($entityTypeCode, $attributeSetId, '<attribute_group_name>', $attrCode, 10);
+echo $attributeSetId;exit;
