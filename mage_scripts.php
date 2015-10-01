@@ -108,11 +108,11 @@ $installer->endSetup();
 unset($installer);
 
 $attributeSetId = Mage::getModel('eav/entity_attribute_set')
-								->getCollection()
-								->setEntityTypeFilter(10)
-								->addFieldToFilter('attribute_set_name', "<attribute_set_name>")
-								->getFirstItem()
-								->getAttributeSetId();
+					->getCollection()
+					->setEntityTypeFilter(10)
+					->addFieldToFilter('attribute_set_name', "<attribute_set_name>")
+					->getFirstItem()
+					->getAttributeSetId();
 $installer = new Mage_Eav_Model_Entity_Setup('core_setup');
 
 $entityTypeRes = Mage::getModel('catalog/product')->getResource();
