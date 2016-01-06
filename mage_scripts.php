@@ -122,3 +122,23 @@ $entityTypeCode = $entityTypeRes->getEntityType()->getEntityTypeCode();
 $installer->startSetup();
 $installer->addAttributeToSet($entityTypeCode, $attributeSetId, '<attribute_group_name>', $attrCode, 10);
 echo $attributeSetId;exit;
+
+## Get Product Attribute Option Id by Option text
+$_product = Mage::getModel('catalog/product');
+$attr = $_product->getResource()->getAttribute("<attribute_code>");
+if ($attr->usesSource()) {
+	$optionId = $attr->getSource()->getOptionId("<option_text>");
+}
+## For example
+$_product = Mage::getModel('catalog/product');
+$attr = $_product->getResource()->getAttribute("color");
+if ($attr->usesSource()) {
+	echo $color_id = $attr->getSource()->getOptionId("Purple");
+}
+
+## Get product attribute option text by option id
+$_product = Mage::getModel('catalog/product');
+$attr = $_product->getResource()->getAttribute("<attribute_code>");
+if ($attr->usesSource()) {
+	$optionText = $optionLabel = $attr->getSource()->getOptionText("<option_id>");
+}
