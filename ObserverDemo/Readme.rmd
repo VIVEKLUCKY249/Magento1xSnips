@@ -1,0 +1,1 @@
+This module invoices the orders as soon as they are placed on frontend.
