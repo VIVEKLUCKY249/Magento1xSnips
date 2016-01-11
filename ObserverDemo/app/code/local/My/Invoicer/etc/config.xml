@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<My_Invoicer>
+			<version>1.0.0.0</version>
+		</My_Invoicer>
+	</modules>
+	<global>
+		<models>
+			<my_invoicer>
+				<class>My_Invoicer_Model</class>
+			</my_invoicer>
+		</models>        
+		<events>
+			<sales_order_save_after>
+				<observers>
+					<my_invoicer_automatically_complete_order>
+						<class>my_invoicer/observer</class>
+						<!--<method>automaticallyInvoiceShipCompleteOrder</method>-->
+						<method>createInvoice</method>
+					</my_invoicer_automatically_complete_order>
+				</observers>
+			</sales_order_save_after>
+		</events>
+	</global>
+</config>
