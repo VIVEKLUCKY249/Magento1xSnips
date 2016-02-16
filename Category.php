@@ -1,6 +1,5 @@
-## Overrided category model - app/code/local/Mage/Catalog/Model/Category.php
-
 <?php
+## Overrided category model - app/code/local/Mage/Catalog/Model/Category.php
 /**
  * Magento
  *
