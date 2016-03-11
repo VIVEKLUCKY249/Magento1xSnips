@@ -73,3 +73,9 @@
 	<price_indexer>catalog/product_indexer_price_grouped</price_indexer>
 </grouped>
 
+<!-- Add custom div around div -->
+<block type="page/html_wrapper" name="cms.wrapper" translate="label">
+	<action method="setElementClass"><value>add-to-box</value></action>
+	<block type="cms/page" name="cms_page"/>
+....
+</block>
