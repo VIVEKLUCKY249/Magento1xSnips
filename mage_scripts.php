@@ -142,3 +142,15 @@ $attr = $_product->getResource()->getAttribute("<attribute_code>");
 if ($attr->usesSource()) {
 	$optionText = $optionLabel = $attr->getSource()->getOptionText("<option_id>");
 }
+
+## Log function usable in any class
+public function log($logline)
+   {
+    $logDir = Mage::getBaseDir('log');
+
+    $fh = fopen($logDir."/sm_tripletex.log","a");
+    if ($fh) {
+      fwrite($fh,"[".date("d.m.Y h:i:s")."] ".$logline."\n");
+      fclose($fh);
+    }
+   }
