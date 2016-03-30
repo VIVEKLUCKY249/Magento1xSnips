@@ -155,6 +155,7 @@ public function log($logline)
     }
    }
    
+## Get label of specified value from System > Config setting of module/core_admin
 protected function _getSystemConfigValueLabel($path, $value) {
         $config = Mage::getConfig()->loadModulesConfiguration('system.xml')->applyExtends();
         
