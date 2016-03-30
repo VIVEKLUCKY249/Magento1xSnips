@@ -179,3 +179,7 @@ protected function _getSystemConfigValueLabel($path, $value) {
             endif;
         endforeach;
 }
+
+## Get System > Config value and existing form value when in edit mode
+$existingData = Mage::registry('module_data')->getData();
+$defaultCountry = Mage::getStoreConfig('mycompany/general/defaultcountry', Mage::app()->getStore());
