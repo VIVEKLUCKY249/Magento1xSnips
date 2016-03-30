@@ -155,7 +155,7 @@ public function log($logline)
     }
    }
    
-## Get label of specified value from System > Config setting of module/core_admin
+## Get label of specified value from System > Config setting of module/core_admin when field is of type 'select'
 protected function _getSystemConfigValueLabel($path, $value) {
         $config = Mage::getConfig()->loadModulesConfiguration('system.xml')->applyExtends();
         
