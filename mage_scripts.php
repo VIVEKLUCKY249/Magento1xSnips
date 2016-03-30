@@ -154,3 +154,27 @@ public function log($logline)
       fclose($fh);
     }
    }
+   
+protected function _getSystemConfigValueLabel($path, $value) {
+        $config = Mage::getConfig()->loadModulesConfiguration('system.xml')->applyExtends();
+        
+        $newPath = '';
+        $parts = explode('/', $path);
+        if (count($parts) != 3) {
+            return '';
+        }
+        $newPath = 'sections/'.$parts[0].'/groups/'.$parts[1].'/fields/'.$parts[2];
+        
+        $node = $config->getNode($newPath);
+        
+        if ($node && $node->source_model) {
+            $model = Mage::getSingleton((string)$node->source_model);
+            $options = $model->toOptionArray();
+        }
+        
+        foreach($options as $country):
+            if($country['value'] == $value):
+                return $country['label'];
+            endif;
+        endforeach;
+}
