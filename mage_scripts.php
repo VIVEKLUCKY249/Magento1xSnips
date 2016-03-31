@@ -185,3 +185,8 @@ if (strpos($_SERVER['REQUEST_URI'], "edit") !== false)
     $existingData = Mage::registry('module_data')->getData();
 $defaultCountry = Mage::getStoreConfig('mycompany/general/defaultcountry', Mage::app()->getStore());
 $defaultCountryName = $this->_getSystemConfigValueLabel('pstorelocator/general/defaultcountry', $defaultCountry);
+
+//String cannot be checked against integer 0 for comparison/condition
+<?php
+if ($country != 0) //is wrong condition
+if ($country != null) //correct
