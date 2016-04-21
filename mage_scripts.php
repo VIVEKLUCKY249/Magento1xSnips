@@ -193,28 +193,28 @@ if ($country != null) //correct
 
 ## Get store details and Url by storeCode start
 public function getStoreByCode($storeCode)
-	{
-		$stores = array_keys(Mage::app()->getStores());
-		foreach($stores as $id) {
-			$store = Mage::app()->getStore($id);
-			if($store->getCode() == $storeCode) {
-				return $store;
-			}
+{
+	$stores = array_keys(Mage::app()->getStores());
+	foreach($stores as $id) {
+		$store = Mage::app()->getStore($id);
+		if($store->getCode() == $storeCode) {
+			return $store;
 		}
-		## If no store found
-		return Mage::app()->getStore();
 	}
+	## If no store found
+	return Mage::app()->getStore();
+}
 	
-	public function getStoreUrlByCode($storeCode)
-	{
-		$stores = array_keys(Mage::app()->getStores());
-		foreach($stores as $id) {
-			$store = Mage::app()->getStore($id);
-			if($store->getCode() == $storeCode) {
-				return $store->getUrl('');
-			}
+public function getStoreUrlByCode($storeCode)
+{
+	$stores = array_keys(Mage::app()->getStores());
+	foreach($stores as $id) {
+		$store = Mage::app()->getStore($id);
+		if($store->getCode() == $storeCode) {
+			return $store->getUrl('');
 		}
-		## If no store found
-		return Mage::app()->getStore()->getUrl('');
 	}
+	## If no store found
+	return Mage::app()->getStore()->getUrl('');
+}
 ## Get store details and Url by storeCode finish
