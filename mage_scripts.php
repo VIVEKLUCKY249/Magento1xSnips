@@ -233,3 +233,7 @@ if ($percentage) {
 	echo $this->__('You save %s', round($percentage, 2) . '%');
 }
 ## Get percentage discount on product price finish
+
+## Debug without fopen or log start
+file_put_contents("/home/web00093/public_html/debugTotals455.log", print_r($order->debug(), true), FILE_APPEND);
+## Debug without fopen or log end
