@@ -230,6 +230,6 @@ if ($originalPrice > $finalPrice) {
 }
 
 if ($percentage) {
-	echo $this->__('You save %s', round($percentage) . '%');
+	echo $this->__('You save %s', round($percentage, 2) . '%');
 }
 ## Get percentage discount on product price finish
