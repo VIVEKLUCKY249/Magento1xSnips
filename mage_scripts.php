@@ -218,3 +218,18 @@ public function getStoreUrlByCode($storeCode)
 	return Mage::app()->getStore()->getUrl('');
 }
 ## Get store details and Url by storeCode finish
+
+## Get percentage discount on product price start
+$_product = $product;
+$originalPrice = $_product->getPrice();
+$finalPrice = $_product->getFinalPrice();
+$percentage = 0;
+
+if ($originalPrice > $finalPrice) {
+	$percentage = ($originalPrice - $finalPrice) * 100 / $originalPrice;
+}
+
+if ($percentage) {
+	echo $this->__('You save %s', $percentage . '%');
+}
+## Get percentage discount on product price finish
