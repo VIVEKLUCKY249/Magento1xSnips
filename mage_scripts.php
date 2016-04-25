@@ -247,3 +247,36 @@ other wise you can modify the following files putting into local code pool.
  /app/code/core/Mage/Sales/Model/Order/Pdf/Abstract.php
  */
  ## To override PDF in Magento 1.9.x end
+
+## Modfy address alignment
+/**
+     * Insert address to pdf page
+     *
+     * @param Zend_Pdf_Page $page
+     * @param null $store
+     */
+    protected function insertAddress(&$page, $store = null)
+    {
+        $page->setFillColor(new Zend_Pdf_Color_GrayScale(0));
+        $font = $this->_setFontRegular($page, 10);
+        $page->setLineWidth(0);
+        $this->y = $this->y ? $this->y : 815;
+        $top = 815;
+        foreach (explode("\n", Mage::getStoreConfig('sales/identity/address', $store)) as $value) {
+            if ($value !== '') {
+                $value = preg_replace('/<br[^>]*>/i', "\n", $value);
+                foreach (Mage::helper('core/string')->str_split($value, 45, true, true) as $_value) {
+                ## $alignRight = $this->getAlignRight($_value, 130, 440, $font, 10);
+                $alignRight = 423.70;
+                ## Mage::log(print_r($alignRight, true),NULL, 'pdfALignRight.log');
+                    $page->drawText(trim(strip_tags($_value)),
+                        $alignRight,
+                        $top,
+                        'UTF-8');
+                    $top -= 10;
+                }
+            }
+        }
+        $this->y = ($this->y > $top) ? $top : $this->y;
+    }
+  ## Modify address alignment end
