@@ -237,3 +237,13 @@ if ($percentage) {
 ## Debug without fopen or log start
 file_put_contents("/home/web00093/public_html/debugTotals455.log", print_r($order->debug(), true), FILE_APPEND);
 ## Debug without fopen or log end
+
+## To override PDF in Magento 1.9.x
+/*http://inchoo.net/magento/how-to-add-custom-attribute-to-magentos-pdf-invoice/
+
+other wise you can modify the following files putting into local code pool.
+
+ /app/code/core/Mage/Sales/Model/Order/Pdf/Invoice.php
+ /app/code/core/Mage/Sales/Model/Order/Pdf/Abstract.php
+ */
+ ## To override PDF in Magento 1.9.x end
