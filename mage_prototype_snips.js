@@ -1,6 +1,6 @@
 //Validate by confirmation of fields
-/*$('confirm_email').addClassName('validate-custemail');
-Validation.addAllThese([
+        /*$('confirm_email').addClassName('validate-custemail');
+        Validation.addAllThese([ 
 	    ['validate-custemail', 'Please make sure your emails match.', function(v) {
 	        var conf = $('confirmation') ? $('confirmation') : $$('.validate-custemail')[0];
 	        var pass = false;
@@ -16,7 +16,7 @@ Validation.addAllThese([
 	    }],
 	]);*/
 	
-		$('confirm_email').addClassName('validate-cemail');
+	$('confirm_email').addClassName('validate-cemail');
         Validation.addAllThese([
 	    ['validate-cemail', 'Please make sure your emails match.', function(v) {
 	        //var conf = $('confirm_email') ? $('confirm_email') : $$('.validate-cemail')[0];
@@ -43,12 +43,42 @@ Validation.addAllThese([
 	    }],
 	]);
 	
-	$('confirm_mobile').addClassName('validate-custmobile');
+	/*$('confirm_mobile').addClassName('validate-custmobile');
         Validation.addAllThese([
 	    ['validate-custmobile', 'Please make sure your mobile numbers match.', function(v) {
 	        var conf = $('confirmation') ? $('confirmation') : $$('.validate-custmobile')[0];
 	        var pass = false;
 	        var confirm;
+	        if ($('mobile_number')) {
+	        	pass = $('mobile_number');
+	        }
+	        confirm =conf.value;
+	        if(!confirm && $('confirm_mobile')) {
+	        	confirm = $('confirm_mobile').value;
+	        }
+	        return (pass.value == confirm);
+	    }],
+	]);*/
+	
+	$('mobile_number').addClassName('validate-mob');
+	$('confirm_mobile').addClassName('validate-mob');
+	
+	$('confirm_mobile').addClassName('validate-custmobile');
+        Validation.addAllThese([
+	    ['validate-custmobile', 'Please make sure your mobile numbers match.', function(v) {
+	        //var conf = $('confirmation') ? $('confirmation') : $$('.validate-custmobile')[0];
+	        var conf = $$('.validate-custmobile')[0];
+	        var pass = false;
+	        var confirm;
+	        var mobileElements = $$('.validate-mob');
+	        
+	        for (var i = 0; i < mobileElements.size(); i++) {
+	        	var mobileElement = mobileElements[i];
+	        	if (mobileElement.up('form').id == conf.up('form').id) {
+	        		pass = mobileElement;
+	        	}
+	        }
+	        
 	        if ($('mobile_number')) {
 	        	pass = $('mobile_number');
 	        }
