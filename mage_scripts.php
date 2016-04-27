@@ -280,3 +280,19 @@ other wise you can modify the following files putting into local code pool.
         $this->y = ($this->y > $top) ? $top : $this->y;
     }
   ## Modify address alignment end
+
+## Get stores and set their links start
+$allStores = Mage::app()->getStores();
+?>
+<div class="links-wrapper-separators">
+<ul class="links">
+    <?php foreach($allStores as $store) { 
+    if($store->getId() == 1) $storeLabel = "Privatkunde";
+    else $storeLabel = "Bedriftskunde"; ?>
+<li class="hide-below-768"><a title="See the list of all features" href="<?php echo Mage::helper('infortis')->getStoreUrlByCode($store->getCode()); ?>"><?php echo $storeLabel; ?></a></li>
+<?php } ?>
+</ul>
+</div>
+<?php
+## Get stores and set their links end
+?>
