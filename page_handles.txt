@@ -162,4 +162,6 @@ WORDPRESS PAGES (When you integrate it with Magento)
 .is-blog
 /blog
 
+#Base Url or store independent url in static block start
 {{config path="web/unsecure/base_url"}}store-code/rest-of-url
+#Base Url or store independent url in static block end
