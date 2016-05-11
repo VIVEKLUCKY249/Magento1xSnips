@@ -295,4 +295,63 @@ $allStores = Mage::app()->getStores();
 </div>
 <?php
 ## Get stores and set their links end
+
+ 11
+down vote
+	
+
+I have used following command to get different URL in magento Get Url in phtml files
+
+1. Get Base Url :
+
+Mage::getBaseUrl();
+
+2. Get Skin Url :
+
+Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
+
+(a) Unsecure Skin Url :
+
+$this->getSkinUrl('images/imagename.jpg');
+
+(b) Secure Skin Url :
+
+$this->getSkinUrl('images/imagename.gif', array('_secure'=>true));
+
+3. Get Media Url :
+
+Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+
+4. Get Js Url :
+
+Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS);
+
+5. Get Store Url :
+
+Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+
+6. Get Current Url
+
+Mage::helper('core/url')->getCurrentUrl();
+
+Get Url in cms pages or static blocks
+
+1. Get Base Url :
+
+{{store url=""}}
+
+2. Get Skin Url :
+
+{{skin url='images/imagename.jpg'}}
+
+3. Get Media Url :
+
+{{media url='/imagename.jpg'}}
+
+4. Get Store Url :
+
+{{store url='mypage.html'}}
+
+I think this will help you.
+
 ?>
