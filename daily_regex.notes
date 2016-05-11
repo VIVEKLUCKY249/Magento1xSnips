@@ -1,0 +1,162 @@
+Search modes regex only:
+
+Replace multiple white spaces with any character (eg. |):
+	Find: [ \t]{2,}
+	Replace with: "|" (without quotes)
+
+Remove everything after 2nd occurrence of character(eg. ,):
+	Find: (.*?,.*?),.* or Find: ([^,\n]+,[^,\n]+),.*
+	Replace with: \1
+
+Place quotes("") around numbers only:
+	Find: (\d+)
+	Replace with: "\1"
+
+Match only words that have spaces between them:
+	Find: ((\w+) (\w+))
+
+Match any word that may have spaces: 
+	Find: ^\w+( +\w+)*$
+	Find: (\D+( +\D+)*)
+	
+Place quotes around only words(may have spaces)
+	Find: ([a-zA-Z][a-zA-Z ]+)
+	Replace with: "\1"
+
+Replace newline with comma and linebreak:
+	Find: \n
+	Replace with: ,\n
+	
+Remove any html tag with it's contents(eg label):
+	Find "<label[^>]*>[\n\t\r]*|<\/label[^>]*>" or "<label.*?>(.|\s)*?</label>"
+	Replace with: ""
+	
+Comment any html tag with it's contents(eg label):
+	Find "(<label[^>]*>[\n\t\r]*|<\/label[^>]*>)" or "(<label.*?>(.|\s)*?</label>)"
+	Replace with: "<!--\1-->"
+	
+Replace multiple spaces with single space:
+	Find: [\r\n]{2,}
+	Replace with: \n
+
+Remove multiple blank lines or empty lines:
+	Find: ^\s*$ or ^[ \t]*$\r?\n or [\t ]+$ or ^$(empty/null lines) or ^\s+$
+	Replace with:
+		
+Remove multiple & trailing spaces (Using positive lookahead):
+	Find: ^ *|(?<= ) | *$
+	Replace with:
+		
+Replace multiple spaces with single space:
+	Find: \s\s+ or \s+(?=\s)
+	Replace with: \s
+
+Remove unnecessary line feeds:
+	Find: \r or \x0D
+	Replace with:
+
+Replace multiple spaces with tab:
+	Find: ^\s{<any_number>}
+	Replace with: \t
+	Example: ^\s{4} with \t
+
+Remove multiple spaces around '=>':
+	Find: \s+(\s=>\s)\s+ or \s*(\s=>\s)\s*
+	Replace with: \1
+
+Replace module name multiple files:
+	Find: (thisweekmeal)\b or (ThisWeekMeal)\b or (thisweekmeal)_ or (ThisWeekMeal)_
+	Replace with: \1s or \1s_
+	
+Replace the occurrence on only specific word:
+	Find: ([^a-z])(<word>)([^a-z])
+	Replace with: \1\2<additional text>\3
+example:
+	Find: ([^a-z])(ThisWeekMeals)([^a-z])
+	Replace with: \1Thisweekmeals\3
+Output: Vikass or _Vikass_
+
+Replace inside xml tags:
+	Find: "<<tagname>>[\s\S]*?<\/<tagname>>"
+	Replace with: <desired value>
+example:
+	Find: (<username>)[\s\S]*?(<\/username>)
+	Replace with: \1<![CDATA[psuser]]\2
+example:
+	Find: (<password>)[\s\S]*?(<\/password>)
+	Replace with: \1<![CDATA[internet2014]]\2
+example:
+	Find: (<dbname>)[\s\S]*?(<\/dbname>)
+	Replace with: \1<![CDATA[magento_cookpack]]\2	
+	
+Comment all lines having a specific text:
+	Find: ^(.*(products-grid).*)$
+	Replace with: \\*\1*\\
+	
+Match any xml tag with CDATA:
+	Find: <\w+><!\[CDATA\[.*?\]\]></\w+>
+	example: <username><!\[CDATA\[.*?\]\]></username>
+	example: <password><!\[CDATA\[.*?\]\]></password>
+
+For indentation, find 4 spaces and replace it with tab:
+	Find: ^ {4}(\w) or ^[ {4}]+([^\s])
+	Replace with: \t\1
+
+Find any line not containing <word/character>:
+	Find: ^((?!<word/character>).)*$
+	example: ^((?!product-name).)*$
+	
+Replace specific word in content between tags:
+		Find: ( )(\bthisweekmeals\b)( )
+		Replace with: \1This Week Meals\3
+
+Remove everything before <substring> on same line only:
+	Find: ^.*(?=<substring>/)
+	Replace with:
+example:
+	Find: ^.*(?=app/)
+	Replace with:
+	
+	or
+	
+	Find what: ^.*(<substring>)
+	Replace with: \1
+	
+Remove extra spaces before '=' or '=>' sign in code:
+	Find: \s+(=) or \s+(=>)
+	Replace with:  \1
+
+Remove extra spaces after '=' or '=>' sign in code:
+	Find: (=)\s+ or (=>)\s+
+	Replace with: \1 
+
+Find and replace xml tag values:
+<action method="addItem">(\s+)<type>skin_css</type>(\s+)<name>calendar/(.*)</name>(\s+)</action>
+<action method="addItem">(\s+)<type>skin_js</type>(\s+)<name>calendar/(.*)</name>(\s+)
+<action method="addItem">(\s+)(<type>)skin_js(</type>)(\s+)<name>calendar/(.*)</name>(\s+)
+<action method="addItem">(\s+)(<type>)skin_js(</type>)(\s+)<name>calendar/(.*)</name>
+
+Find and Remove singleline comments(lines starting with '//' or '##' or '#')
+	Find: ^\s*//.*$ or ^\s*##.*$ or ^\s*#.*$
+	Replace with:
+
+Remove trailing spaces:
+Find: [ \t]+$
+Replace with:
+
+Find out which functions in PHP file are being called during script execution
+Find: function\s+(.*?)\)\s*{
+Replace with: function \1\) {\n\tMage::log\(Varien_Debug::backtrace\(true, false\), null, 'mpdfDebug.log'\);
+OR
+Replace with: function \1\) {\n\techo Varien_Debug::backtrace\(true, true\); exit;
+
+Create module file path from Class name in Magento 1.9.x/1.x versions
+Step 1 Non Regex replace mode
+Find: "_"
+Replace with: "/"
+Step 2 Regex replace mode
+Find: "^(.+)$"
+Replace with: "public_html/app/code/local/\1" (For live site)
+Or
+Replace with: "app/code/local/\1" (For local site)
+
