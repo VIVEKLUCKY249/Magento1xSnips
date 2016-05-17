@@ -354,4 +354,42 @@ Get Url in cms pages or static blocks
 
 I think this will help you.
 
+## Log all sql queries in Magento CE 1.9.x start
+### Replace the "query" function in /lib/Varien/Db/Adapter/Pdo/Mysql.php with the below function
+/**
+ * Special handling for PDO query().
+ * All bind parameter names must begin with ':'.
+ *
+ * @param string|Zend_Db_Select $sql The SQL statement with placeholders.
+ * @param mixed $bind An array of data or data itself to bind to the placeholders.
+ * @return Zend_Db_Statement_Pdo
+ * @throws Zend_Db_Adapter_Exception To re-throw PDOException.
+ */
+  public function query($sql, $bind = array())
+  {
+      $this->_debugTimer();
+      try {
+          $sql = (string)$sql;
+          if (strpos($sql, ':') !== false || strpos($sql, '?') !== false) {
+              $this->_bindParams = $bind;
+              ## $sql = preg_replace_callback('#((["])((2)|((.*?[^\])2))")#', array($this, 'proccessBindCallback'), $sql);
+              $sql = preg_replace_callback("/#(([\\'\"])((2)|((.*?[^\\\\])2)))#/", array($this, 'proccessBindCallback'), $sql);
+              $bind = $this->_bindParams;
+          }
+          $code = 'SQL: ' . $sql . "\r\n";
+          if ($bind) {
+              $code .= 'BIND: ' . print_r($bind, true) . "\r\n";
+          }
+          $this->_debugWriteToFile("[".date('Y-m-d H:i:s')."] ".$code);
+          $result = parent::query($sql, $bind);
+      }
+      catch (Exception $e) {
+          $this->_debugStat(self::DEBUG_QUERY, $sql, $bind);
+          $this->_debugException($e);
+      }
+      $this->_debugStat(self::DEBUG_QUERY, $sql, $bind, $result);
+      return $result;
+  }
+  ### All queries will be logged in "magento_root/var/debug/pdo_mysql.log" file.
+## Log all sql queries in Magento CE 1.9.x finish
 ?>
