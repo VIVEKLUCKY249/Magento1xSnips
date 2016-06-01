@@ -464,4 +464,10 @@ tloc_find_unserializable($_SESSION);
 echo '</pre>';
 ### Find the sections in 'red' color those are the ones that tries to serialize but cannot
 ## Find from where does "... cannot be serialized" error comes from end
+
+## Log any resource in Magento 1.x with full information start
+$filePath = __FILE__;$lineNum = __LINE__;$methodName = __METHOD__;
+Mage::log(print_r($resource, true)." from file:".$filePath." at line:".$lineNum." from method:".$methodName, NULL, 'developerDebug.log');
+Mage::log($resource." from file:".$filePath." at line:".$lineNum." from method:".$methodName, NULL, 'developerDebug2.log');
+## Log any resource in Magento 1.x with full information finish
 ?>
