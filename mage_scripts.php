@@ -392,4 +392,27 @@ I think this will help you.
   }
   ### All queries will be logged in "magento_root/var/debug/pdo_mysql.log" file.
 ## Log all sql queries in Magento CE 1.9.x finish
+
+## Find out in which file "Headers already sent..." error occurs start
+### Edit the file <magento_root>/lib/Zend/Controller/Response/Abstract.php and make "canSendHeaders" function look like below:
+/**
+ * Can we send headers?
+ *
+ * @param boolean $throw Whether or not to throw an exception if headers have been sent; defaults to false
+ * @return boolean
+ * @throws Zend_Controller_Response_Exception
+ */
+public function canSendHeaders($throw = false)
+{
+    $ok = headers_sent($file, $line);
+    if ($ok && $throw && $this->headersSentThrowsException) {
+        #require_once 'Zend/Controller/Response/Exception.php';
+        throw new Zend_Controller_Response_Exception('Cannot send headers; headers already sent in ' . $file . ', line ' . $line);
+    }
+    if ($ok) Mage::log('Cannot send headers; headers already sent in ' . $file . ', line ' . $line);
+    if ($ok) Mage::log('Cannot send headers; headers already sent in ' . $file . ', line ' . $line, null, 'developerDebug.log');
+    return !$ok;
+}
+### Save the file. Run the site and check the "developerDebug.log" file.
+## Find out in which file "Headers already sent..." error occurs finish
 ?>
