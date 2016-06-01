@@ -415,4 +415,53 @@ public function canSendHeaders($throw = false)
 }
 ### Save the file. Run the site and check the "developerDebug.log" file.
 ## Find out in which file "Headers already sent..." error occurs finish
+
+## Find from where does "... cannot be serialized" error comes from start
+### Add the below code to any template file at the bottom, probably 'footer.phtml'
+function tloc_is_iterable($var) {
+    return (is_array($var) || $var instanceof Traversable);
+}
+
+function tloc_find_unserializable($var, $tab=false) {
+    if (!$tab) {
+        $tab = "\t";
+    }
+
+    if (tloc_is_iterable($var)) {
+        foreach ($var as $key => $each) {
+            if (is_resource($each)) {
+                echo $tab . '<span style="color: #090;">'.$key.'</span> -> Resource' . "\n";
+            } else {
+                try {
+                    serialize($each);
+
+                    // if serialization doesn't error
+                    echo $tab . '<span style="color: #090;">'.$key.'</span>' . "\n";
+                } catch (Exception $e) {
+                    echo $tab . '<span style="color: #f40;">';
+                    if (!tloc_is_iterable($each)) {
+                        echo '<strong><i>' . $key . '</i></strong>';
+                    } else {
+                        echo $key;
+                    }
+
+                    echo '</span>';
+                    if (is_object($each)) {
+                        echo ' -> '.get_class($each);
+                    }
+                    echo "\n";
+                }
+            }
+
+            if (tloc_is_iterable($each)) {
+                tloc_find_unserializable($each, $tab."\t");
+            }
+        }
+    }
+}
+echo '<pre style="background-color: #fff; color: #000;">';
+tloc_find_unserializable($_SESSION);
+echo '</pre>';
+### Find the sections in 'red' color those are the ones that tries to serialize but cannot
+## Find from where does "... cannot be serialized" error comes from end
 ?>
