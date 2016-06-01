@@ -470,4 +470,18 @@ $filePath = __FILE__;$lineNum = __LINE__;$methodName = __METHOD__;
 Mage::log(print_r($resource, true)." from file:".$filePath." at line:".$lineNum." from method:".$methodName, NULL, 'developerDebug.log');
 Mage::log($resource." from file:".$filePath." at line:".$lineNum." from method:".$methodName, NULL, 'developerDebug2.log');
 ## Log any resource in Magento 1.x with full information finish
+
+## Log PHP function with as many details as possible start
+function f1() {
+  $fileinfo = null;
+  $backtrace = debug_backtrace();
+  if (!empty($backtrace[0]) && is_array($backtrace[0])) {
+    $fileinfo = $backtrace[0]['file'] . ":" . $backtrace[0]['line'];
+  }
+  echo "calling file info: $fileinfo\n";
+}
+### Call it as below:
+f1();
+## Log PHP function with as many details as possible end
+?>
 ?>
