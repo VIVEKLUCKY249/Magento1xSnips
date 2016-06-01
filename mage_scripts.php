@@ -483,5 +483,5 @@ function f1() {
 ### Call it as below:
 f1();
 ## Log PHP function with as many details as possible end
-?>
+
 ?>
