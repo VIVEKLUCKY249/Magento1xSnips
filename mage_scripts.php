@@ -484,4 +484,23 @@ function f1() {
 f1();
 ## Log PHP function with as many details as possible end
 
+## Function to log large objects/arrays to file start
+public function storeToLog($resource, $filename = null) {
+	$logFilePath = MAGENTO_ROOT . DS . "var" . DS . "log";
+	$targetFile = ($filename != null) ? $filename : "debug.log";
+	$targetFile = $logFilePath . DS . $targetFile;
+	$file = fopen($targetFile, "w");
+	ob_start();
+	print_r($resource);
+	$largeData = ob_get_contents();
+	ob_end_clean();
+	$pieces = str_split($largeData, 1024 * 4);
+	foreach ($pieces as $piece) {
+		fwrite($file, $piece, strlen($piece));
+	}
+	fclose($file);
+}
+### Put the above function in Common/Functions - Helper/Data.php
+### Then call function in Magento like: Mage::helper('common-functions')->storeToLog(print_r($_categoryCollection, true));
+## Function to log large objects/arrays to file finish
 ?>
