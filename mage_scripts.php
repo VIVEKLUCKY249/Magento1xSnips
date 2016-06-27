@@ -503,4 +503,12 @@ public function storeToLog($resource, $filename = null) {
 ### Put the above function in Common/Functions - Helper/Data.php
 ### Then call function in Magento like: Mage::helper('common-functions')->storeToLog(print_r($_categoryCollection, true));
 ## Function to log large objects/arrays to file finish
+
+## Show company related fields to only business store start
+$currStore = $store = Mage::app()->getStore()->getName();
+if($currStore == "<business store name>"):
+	$this->setShowAddressFields(true);
+endif;
+## Show company related fields to only business store end
+
 ?>
