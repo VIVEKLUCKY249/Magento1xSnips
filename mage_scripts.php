@@ -505,10 +505,10 @@ public function storeToLog($resource, $filename = null) {
 ## Function to log large objects/arrays to file finish
 
 ## Show company related fields to only business store start
+### Add below code in your theme/persistent/customer/form/register.phtml
 $currStore = $store = Mage::app()->getStore()->getName();
 if($currStore == "<business store name>"):
 	$this->setShowAddressFields(true);
 endif;
 ## Show company related fields to only business store end
-
 ?>
