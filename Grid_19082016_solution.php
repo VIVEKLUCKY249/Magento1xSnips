@@ -24,7 +24,7 @@ class Mage_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block_Widget_
 		$collection = Mage::getResourceModel($this->_getCollectionClass());
 		$collection->join(array('payment' => 'sales/order_payment'),'main_table.entity_id = parent_id','method');
 		//Edit Starts:
-		$collection->getSelect()->join('sales_flat_order', 'main_table.entity_id = sales_flat_order.entity_id',array('shipping_method' =>'shipping_method'));
+		$collection->getSelect()->join(array('sfo' => 'sales_flat_order'), 'main_table.entity_id = sfo.entity_id',array('shipping_method' =>'shipping_method'));
 		//Edit Ends:
 		$this->setCollection($collection);
 		return parent::_prepareCollection();
@@ -60,7 +60,6 @@ class Mage_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block_Widget_
 			'header' => Mage::helper('sales')->__('Ship to Name'),
 			'index' => 'shipping_name',
 		));
-
 		$payments = Mage::getSingleton('payment/config')->getActiveMethods();
 		$methods = array();
 		foreach($payments as $paymentCode => $paymentModel) {
@@ -70,7 +69,6 @@ class Mage_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block_Widget_
 		$this->addColumn('method', array(
 			'header' => Mage::helper('sales')->__('Payment Method'),
 			'index' => 'method',
-			#'filter_index' => 'sfop.method',
 			'filter_index' => 'method',
 			'type'  => 'options',
 			'width' => '70px',
@@ -80,22 +78,22 @@ class Mage_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block_Widget_
 		$methods = Mage::getSingleton('shipping/config')->getActiveCarriers();
 		$shippingmethods = array();
 		foreach($methods as $_ccode => $_carrier) {
-			if($_methods = $_carrier->getAllowedMethods())  {
-				if(!$_title = Mage::getStoreConfig("carriers/$_ccode/title"))
-					$_title = $_ccode;
-				foreach($_methods as $_mcode => $_method)   {
+			if($_methods = $_carrier->getAllowedMethods()) {
+				if(!$_title = Mage::getStoreConfig("carriers/$_ccode/title")) $_title = $_ccode;
+				foreach($_methods as $_mcode => $_method) {
+					if($_mcode != 'flatrate' && $_mcode != 'freeshipping') $_title = $_ccode.' - '.$_method;
 					$_code = $_ccode . '_' . $_mcode;
-					$shippingmethods[$_code]= $_title;
+					$shippingmethods[$_code] = $_title;
 				}
 			}
 		}
-
 		$this->addColumn('shipping_method', array(
-		'header'=> Mage::helper('sales')->__('Shipping Method'),
-		'width' => '80px',
-		'type'  => 'options',
-		'index' => 'shipping_method',
-		'options' => $shippingmethods,
+			'header'=> Mage::helper('sales')->__('Shipping Method'),
+			'width' => '80px',
+			'type'  => 'options',
+			'filter_index' => 'sfo.shipping_method',
+			'index' => 'shipping_method',
+			'options' => $shippingmethods,
 		));
 		//Edit ends.......
 		$this->addColumn('base_grand_total', array(
