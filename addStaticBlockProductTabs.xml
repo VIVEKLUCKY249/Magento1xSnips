@@ -5,7 +5,7 @@
         <action method="addTab" translate="title" module="catalog" ><alias>additional_tabbed</alias><title>Additional</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
         <action method="addTab" translate="title" module="tag" ><alias>tags_tabbed</alias><title>Tags</title><block>tag/product_list</block><template>tag/list.phtml</template></action>
         <action method="addTab" translate="title" module="review" ><alias>review_tabbed</alias><title>Reviews</title><block>review/product_view_list</block><template>review/product_info_review.phtml</template></action>
-        <action method="addTab" translate="title" module="catalog"><alias>static-block-id_tabbed</alias><title>Bryggeguide</title><block>cms/block</block><template>null</template></action>
+        <action method="addTab" translate="title" module="catalog"><alias>static-block-id_tabbed</alias><title>Static Block Name</title><block>cms/block</block><template>null</template></action>
         <block type="cms/block" name="product.info.tabs.static-block-id_tabbed" as="static-block-id_tabbed">
         	<action method="setBlockId"><block_id>static-block-id</block_id></action>
         </block>
